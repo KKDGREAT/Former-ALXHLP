@@ -1,9 +1,15 @@
 #!/usr/bin/python3
+
 def number_keys(a_dictionary):
-    num = 0
-    list_keys = list(a_dictionary.keys())
+    """returns the number of keys in a dictionary
+    You are not allowed to import any module
+    """
 
-    for i in list_keys:
-        num += 1
+    # this is an alernative
+    # keys = list(a_dictionary.keys())
+    # count = 0
+    # for count in keys:
+    #     count += 1
+    # return count
 
-    return (num)
+    return len(a_dictionary)

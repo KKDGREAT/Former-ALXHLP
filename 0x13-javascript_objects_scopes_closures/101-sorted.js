@@ -1,19 +1,20 @@
 #!/usr/bin/node
 
-const dict = require('./101-data.js').dict;
-
-const dict1 = Object.entries(dict);
-const uniqID = [...new Set(Object.values(dict))];
+/**
+ * script that imports a dictionary of occurrences by user id and
+ * computes a dictionary of user ids by occurrence.
+ * Your script must import dict from the file 101-data.js.
+ * In the new dictionary: A key is a number of occurrences, a value is
+ * the list of user ids.
+ * Print the new dictionary at the end
+ */
+const initDict = require('./101-data').dict;
 const newDict = {};
 
-for (const ID in uniqID) {
-  const idList = [];
-  for (const i in dict1) {
-    if (dict1[i][1] === uniqID[ID]) {
-      idList.unshift(dict1[i][0]);
-    }
+for (const key in initDict) {
+  if (newDict[initDict[key]] === undefined) {
+    newDict[initDict[key]] = [];
   }
-  newDict[uniqID[ID]] = idList;
+  newDict[initDict[key]].push(key);
 }
-
 console.log(newDict);

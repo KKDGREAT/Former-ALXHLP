@@ -1,6 +1,5 @@
 #!/usr/bin/node
-
-module.exports = class Rectangle {
+class Rectangle {
   constructor (w, h) {
     if (w > 0 && h > 0) {
       this.width = w;
@@ -8,21 +7,38 @@ module.exports = class Rectangle {
     }
   }
 
+  /**
+   * @property {method} print - prints the rectangle using the character X
+   * @returns void
+   */
   print () {
     for (let i = 0; i < this.height; i++) {
-      console.log('X'.repeat(this.width));
+      let s = '';
+      for (let j = 0; j < this.width; j++) {
+        s += 'X';
+      }
+      console.log(s);
     }
   }
 
-  double () {
-    this.width = this.width * 2;
-    this.height = this.height * 2;
+  /**
+   * @property {method} rotate - exchanges the width and the height of the rectangle
+   * @returns void
+   */
+  rotate () {
+    const temp = this.width;
+    this.width = this.height;
+    this.height = temp;
   }
 
-  rotate () {
-    const i = this.width;
-    const j = this.height;
-    this.height = i;
-    this.width = j;
+  /**
+   * @property {method} double - multiples the width and the height of the rectangle by 2
+   * @returns void
+   */
+  double () {
+    this.width *= 2;
+    this.height *= 2;
   }
-};
+}
+
+module.exports = Rectangle;

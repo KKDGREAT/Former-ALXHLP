@@ -1,31 +1,17 @@
 #!/usr/bin/python3
-"""
-eLists all cities of a state from the database hbtn_)e_4_usa
-using the first three arguments passed as user credentials
-
-1st arg: user
-2nd arg: password
-3rd arg: database
-
-"""
-
+"""Script that takes in the name of a state as an argument and lists
+all cities of that state, using the database hbtn_0e_4_usa"""
 import MySQLdb
-import sys
-
+from sys import argv
 
 if __name__ == "__main__":
-    conn = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                           password=sys.argv[2], db=sys.argv[3], port=3306,
-                           charset="utf8")
-    state = sys.argv[4]
-    cursor = conn.cursor()
-    cursor.execute("""SELECT cities.name
-                   FROM cities JOIN states ON cities.state_id = states.id
-                   WHERE states.name = %s""", (state,))
-    query = cursor.fetchall()
-    city_names = []
-    for state in query:
-        city_names.append(state[0])
-    print(*city_names, sep=", ")
-    cursor.close()
-    conn.close()
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3], charset="utf8")
+    cur = db.cursor()
+    cur.execute("SELECT cities.name FROM cities \
+    JOIN states ON cities.state_id = states.id WHERE states.name LIKE %s \
+    ORDER BY cities.id", (argv[4],))
+    rows = cur.fetchall()
+    print(", ".join(city[0] for city in rows))
+    cur.close()
+    db.close()

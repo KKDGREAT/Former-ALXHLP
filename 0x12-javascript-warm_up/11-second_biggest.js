@@ -1,17 +1,10 @@
 #!/usr/bin/node
-
-/*
- * access the arguments
- * convert args to nums
- * sort nums
- * print second biggest num using its index
- */
-
-const args = process.argv;
-const num = args.slice(2, process.argv.length).sort((a, b) => a - b);
-
-if (args.length <= 3) {
+const process = require('process');
+const argv = process.argv;
+const argc = process.argv.length;
+if (argc < 4) {
   console.log(0);
 } else {
-  console.log(num[num.length - 2]);
+  const array = argv.slice(2).sort((a, b) => a - b).reverse();
+  console.log(array[1]);
 }

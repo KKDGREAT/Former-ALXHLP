@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-""" Geometry module """
+"""Defines an empty class BaseGeometry"""
 
 
 class BaseGeometry:
-    """ Empty class """
+    """Empty class
+    """
     pass

@@ -1,17 +1,20 @@
 #!/usr/bin/python3
 """
-sends a request and displays the body of the error
-display error code if HTTPError is encountered
+script that takes in a URL, sends a request to the URL and displays the
+body of the response (decoded in utf-8).
+You have to manage urllib.error.HTTPError exceptions and
+print: Error code: followed by the HTTP status code.
 """
+import urllib.request
+import urllib.error
+import sys
 
-if __name__ == '__main__':
-    from urllib.error import HTTPError
-    from urllib import request
-    import sys
 
+if __name__ == "__main__":
+    url = sys.argv[1]
     try:
-        with request.urlopen(sys.argv[1]) as res:
-            res = res.read().decode('UTF-8')
-            print(res)
-    except HTTPError as exception:
-        print('Error code:', exception.code)
+        with urllib.request.urlopen(url) as response:
+            response_text = response.read().decode("utf-8")
+            print(response_text)
+    except urllib.error.HTTPError as e:
+        print("Error code: {}".format(e.code))

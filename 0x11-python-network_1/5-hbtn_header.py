@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 """
-sends a request to URL passed as argument
-display the value of the header variable 'X-Request-Id'
+Python script that takes in a URL, sends a request to the URL and displays
+the value of the X-Request-Id variable found in the header of the response.
 """
+import requests
+import sys
 
-if __name__ == '__main__':
-    import requests
-    import sys
 
-    try:
-        res = requests.get(sys.argv[1])
-        print(res.headers['X-Request-Id'])
-    except Exception:
-        pass
+if __name__ == "__main__":
+    url = sys.argv[1]
+    response = requests.get(url)
+    value = response.headers.get("X-Request-Id")
+    print(value)

@@ -1,8 +1,12 @@
 #!/usr/bin/node
-
-let numOfArgsPrinted = 0;
-
+/**
+ * function  that prints the number of arguments already printed and the
+ * new argument value
+ * @param {item} str - argument passed to function
+ * @returns void
+ */
+let narg = 0;
 exports.logMe = function (item) {
-  console.log(`${numOfArgsPrinted}:`, item);
-  numOfArgsPrinted += 1;
+  console.log(`${narg}: ${item}`);
+  narg++;
 };

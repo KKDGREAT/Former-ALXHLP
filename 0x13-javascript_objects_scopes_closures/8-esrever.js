@@ -1,13 +1,13 @@
 #!/usr/bin/node
-
-// we are instructed not to use the built-in reverse method
+/**
+ * function to reverse a list
+ * @param {list} list - list to examine
+ * @returns {number} - the reversed version of a list
+ */
 exports.esrever = function (list) {
-  const lastIndex = list.length - 1;
-  const revList = [];
-  let index = 0;
-  for (let i = lastIndex; i >= 0; i--) {
-    revList[index] = list[i];
-    index += 1;
+  const newList = [];
+  for (let i = list.length - 1; i >= 0; i--) {
+    newList.push(list[i]);
   }
-  return revList;
+  return newList;
 };

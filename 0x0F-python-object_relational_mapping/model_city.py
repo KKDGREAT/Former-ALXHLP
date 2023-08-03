@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""
-Module contains the class definition of City
-"""
-from model_state import Base
-from sqlalchemy import Integer, String, Column, ForeignKey
+"""Defines a class City"""
+
+
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 
 class City(Base):
-    """
-    Class definition of all cities
-    """
+    """Module of a city"""
     __tablename__ = 'cities'
-    id = Column(Integer, nullable=False, unique=True, primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
+    state_id = Column(Integer, ForeignKey('states.id'))

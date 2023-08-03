@@ -1,48 +1,49 @@
 #include "lists.h"
+#include <stddef.h>
+#include <stdlib.h>
 
 /**
- * insert_node - inserts a new node
- * at a given position.
- * @head: head of a list.
- * @number: index of the list where the new node is
- * added.
- * Return: the address of the new node, or NULL if it
- * failed.
+ * insert_node - function that inserts a number to a singly linked list.
+ * @head: pointer to pointer to head of the list.
+ * @number: value of the node to insert.
+ *
+ * Return: the address of the new node, or NULL if it failed.
  */
+
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *new;
-	listint_t *h;
-	listint_t *h_prev;
-
-	h = *head;
-	new = malloc(sizeof(listint_t));
-
-	if (new == NULL)
+	listint_t *new_node, *traverse;
+	unsigned int idx = 0, i = 0;
+	/* if there is no list return null */
+	if (head == NULL)
 		return (NULL);
-
-	while (h != NULL)
+	/* create the new node */
+	new_node = malloc(sizeof(listint_t));
+	if (new_node == NULL)
+		return (NULL);
+	/* access the n field of the new_node and initialize it as n */
+	new_node->n = number;
+	/* check if idx = 0 */
+	if (idx == 0)
 	{
-		if (h->n > number)
-			break;
-		h_prev = h;
-		h = h->next;
+		/* access the next field of new_node and assign it as first node */
+		new_node->next = *head;
+		*head = new_node;
+		return (new_node);
+	}
+	/* make traverse be the value at head */
+	traverse = *head;
+	while (i != idx - 1 && traverse != NULL)
+	{
+		traverse = traverse->next;
+		i++;
 	}
 
-	new->n = number;
-
-	if (*head == NULL)
+	if (i == idx - 1 && traverse != NULL)
 	{
-		new->next = NULL;
-		*head = new;
+		new_node->next = traverse->next;
+		traverse->next = new_node;
+		return (new_node);
 	}
-	else
-	{
-		new->next = h;
-		if (h == *head)
-			*head = new;
-		else
-			h_prev->next = new;
-	}
-	return (new);
+	return (NULL);
 }

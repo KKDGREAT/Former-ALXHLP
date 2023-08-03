@@ -1,9 +1,16 @@
 #!/usr/bin/python3
+
 def complex_delete(a_dictionary, value):
-    list_keys = list(a_dictionary.keys())
+    """deletes keys with a specific value in a dictionary
+    If the value doesn’t exist, the dictionary won’t change
+    All keys having the searched value have to be deleted
+    You are not allowed to import any module
+    """
 
-    for value_dic in list_keys:
-        if value == a_dictionary.get(value_dic):
-            del a_dictionary[value_dic]
+    keys_list = list(a_dictionary.keys())
 
-    return (a_dictionary)
+    for key in keys_list:
+        if value == a_dictionary.get(key):
+            del a_dictionary[key]
+
+    return a_dictionary

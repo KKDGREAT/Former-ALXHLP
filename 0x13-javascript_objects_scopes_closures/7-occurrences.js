@@ -1,13 +1,22 @@
 #!/usr/bin/node
-
-exports.nbOccurences = function (list, searchElement) {
-  function occurs (count, current) {
-    return (current === searchElement ? count + 1 : count);
-  }
-  return list.reduce(occurs, 0);
-};
-/* alternatively in one line of code
- *
- * return list.reduce((count, current) => current === searchElement ? count + 1 : count, 0);
- *  };
+/**
+ * function to count number of occurrences in a list
+ * @param {list} list - list ti examine
+ * @param {number} searchElement - element to search for
+ * @returns {number} - the number of occurrences in a list
  */
+exports.nbOccurences = function (list, searchElement) {
+  let count = 0;
+  list.forEach((item) => {
+    if (item === searchElement) {
+      count++;
+    }
+  });
+  return count;
+};
+// alternative to arrow function
+// list.forEach(function (item) {
+//   if (item === searchElement) {
+//     i++;
+//   }
+// });

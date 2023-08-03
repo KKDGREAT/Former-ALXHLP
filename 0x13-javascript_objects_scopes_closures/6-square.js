@@ -1,21 +1,21 @@
 #!/usr/bin/node
-
 const square = require('./5-square');
-
-module.exports = class Square extends square {
-  constructor (size) {
-    super(size, size);
-  }
-
+class Square extends square {
+  /**
+   * @property {method} charPrint - prints the rectangle using the character c
+   * @returns void
+   */
   charPrint (c) {
-    if (c) {
-      for (let i = 0; i < this.height; i++) {
-        console.log(c.repeat(this.width));
+    if (c === undefined) {
+      c = 'X';
+    }
+    for (let i = 0; i < this.height; i++) {
+      let s = '';
+      for (let j = 0; j < this.width; j++) {
+        s += c;
       }
-    } else {
-      for (let i = 0; i < this.height; i++) {
-        console.log('X'.repeat(this.width));
-      }
+      console.log(s);
     }
   }
-};
+}
+module.exports = Square;
